@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cyber-bg: #07090D;
+  --color-cyber-panel: #0D1117;
+  --color-cyber-border: #161B22;
+  --color-cyber-accent: #00F0FF;
+  --color-cyber-accent-secondary: #39FF14;
+  
+  --color-sev-normal: #4ADE80;
+  --color-sev-info: #3B82F6;
+  --color-sev-low: #22C55E;
+  --color-sev-medium: #F59E0B;
+  --color-sev-high: #F97316;
+  --color-sev-critical: #EF4444;
+
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-cyber-bg);
+  color: #e5e7eb;
+  font-family: var(--font-sans), sans-serif;
+}
+
+.panel {
+  border: 1px solid var(--color-cyber-border);
+  background-color: var(--color-cyber-panel);
+}
+
+.neubrutalist-shadow {
+  box-shadow: 4px 4px 0px rgba(0, 240, 255, 0.2);
+}
+
+.neubrutalist-border {
+  border: 2px solid var(--color-cyber-border);
+}
+
+.cyber-button {
+  background-color: transparent;
+  border: 1px solid var(--color-cyber-accent);
+  color: var(--color-cyber-accent);
+  text-transform: uppercase;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.cyber-button:hover {
+  background-color: var(--color-cyber-accent);
+  color: var(--color-cyber-bg);
+  box-shadow: 4px 4px 0px rgba(0, 240, 255, 0.2);
+}
+
+.timeline-line {
+  position: absolute;
+  left: 0.5rem;
+  top: 1.5rem;
+  bottom: -0.5rem;
+  width: 2px;
+  background-color: var(--color-cyber-border);
+}
+
+.data-table th {
+  text-align: left;
+  text-transform: uppercase;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  border-bottom: 1px solid var(--color-cyber-border);
+  padding: 0.75rem 1rem;
+}
+
+.data-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-cyber-border);
+}
+
+.data-table tbody tr:hover {
+  background-color: rgba(22, 27, 34, 0.5);
 }

@@ -12,12 +12,10 @@ export interface PlaybookStepResult {
   details: string;
 }
 
-export async function POST(
-  req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function POST(req: NextRequest) {
   try {
-    const { id } = await params;
+    const body = await req.json();
+    const id = body.id || body.incidentId;
     if (!id) {
       return NextResponse.json({ error: "Incident ID required" }, { status: 400 });
     }
@@ -32,11 +30,11 @@ export async function POST(
     const eventsSnap = await adminDb.collection("security_events").where("incidentId", "==", id).get();
     const events = eventsSnap.docs.map((d: QueryDocumentSnapshot) => d.data()) as SecurityEvent[];
 
-    const attackerIp = events.find(e => e.source_ip)?.source_ip || "185.88.92.1";
-    const victimUser = events.find(e => e.user)?.user || "compromised_user";
-    const targetDevice = events.find(e => e.device)?.device || "WORKSTATION-01";
+    const attackerIp = events.find((e: SecurityEvent) => e.source_ip)?.source_ip || "185.88.92.1";
+    const victimUser = events.find((e: SecurityEvent) => e.user)?.user || "compromised_user";
+    const targetDevice = events.find((e: SecurityEvent) => e.device)?.device || "WORKSTATION-01";
 
-    // Simulate multi-stage automated containment steps with realistic sub-second latencies
+    // Multi-stage automated containment steps with realistic sub-second latencies
     const steps: PlaybookStepResult[] = [
       {
         step: "STEP_1",
@@ -98,8 +96,8 @@ export async function POST(
       steps
     });
 
-  } catch (error: any) {
-    console.error("Playbook execution error:", error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (err: any) {
+    console.error("Playbook execution failed:", err);
+    return NextResponse.json({ error: err.message || "Failed to execute automated response playbook" }, { status: 500 });
   }
 }

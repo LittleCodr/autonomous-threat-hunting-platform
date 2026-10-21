@@ -6,20 +6,23 @@ import { rules, DetectionRule } from "@/lib/detection";
 import { QueryDocumentSnapshot } from "firebase-admin/firestore";
 import Link from "next/link";
 
-export const dynamic = 'force-dynamic';
-
 export default async function RulesAndRuns() {
-  const runsQuery = await adminDb.collection("investigation_runs").orderBy("start_time", "desc").limit(30).get();
-  
-  const runs = runsQuery.docs.map((d: QueryDocumentSnapshot) => {
-    const data = d.data();
-    return {
-      ...data,
-      id: d.id,
-      start_time: data.start_time?.toDate ? data.start_time.toDate() : new Date(),
-      end_time: data.end_time?.toDate ? data.end_time.toDate() : undefined
-    } as InvestigationRun;
-  });
+  let runs: InvestigationRun[] = [];
+
+  try {
+    const runsQuery = await adminDb.collection("investigation_runs").orderBy("start_time", "desc").limit(30).get();
+    runs = runsQuery.docs.map((d: QueryDocumentSnapshot) => {
+      const data = d.data();
+      return {
+        ...data,
+        id: d.id,
+        start_time: data.start_time?.toDate ? data.start_time.toDate() : new Date(),
+        end_time: data.end_time?.toDate ? data.end_time.toDate() : undefined
+      } as InvestigationRun;
+    });
+  } catch (err) {
+    console.warn("Static build-time fallback active for runs:", err);
+  }
 
   const getFriendlyRuleTitle = (name: string) => {
     switch (name) {

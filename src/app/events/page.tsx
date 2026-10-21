@@ -4,17 +4,20 @@ import { QueryDocumentSnapshot } from "firebase-admin/firestore";
 import { EventExplorerClient } from "@/components/events/EventExplorerClient";
 import { serializeFirestore } from "@/lib/firebase/serialize";
 
-export const dynamic = 'force-dynamic';
-
 export default async function EventExplorer() {
-  const eventsQuery = await adminDb.collection("security_events").orderBy("timestamp", "desc").limit(150).get();
-  
-  const events = eventsQuery.docs.map((d: QueryDocumentSnapshot) => {
-    return serializeFirestore<SecurityEvent>({
-      ...d.data(),
-      id: d.id
+  let events: SecurityEvent[] = [];
+
+  try {
+    const eventsQuery = await adminDb.collection("security_events").orderBy("timestamp", "desc").limit(150).get();
+    events = eventsQuery.docs.map((d: QueryDocumentSnapshot) => {
+      return serializeFirestore<SecurityEvent>({
+        ...d.data(),
+        id: d.id
+      });
     });
-  });
+  } catch (err) {
+    console.warn("Static build-time fallback active for events:", err);
+  }
 
   return (
     <div className="p-8 max-w-7xl mx-auto space-y-8">

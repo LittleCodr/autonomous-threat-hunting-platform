@@ -4,18 +4,21 @@ import { QueryDocumentSnapshot } from "firebase-admin/firestore";
 import { IncidentsListClient } from "@/components/incidents/IncidentsListClient";
 import { serializeFirestore } from "@/lib/firebase/serialize";
 
-export const dynamic = 'force-dynamic';
-
 export default async function IncidentsList() {
-  const incidentsQuery = await adminDb.collection("incidents").orderBy("created_at", "desc").limit(100).get();
-  
-  const incidents = incidentsQuery.docs.map((d: QueryDocumentSnapshot) => {
-    const data = d.data();
-    return serializeFirestore<Incident>({
-      ...data,
-      id: d.id,
+  let incidents: Incident[] = [];
+
+  try {
+    const incidentsQuery = await adminDb.collection("incidents").orderBy("created_at", "desc").limit(100).get();
+    incidents = incidentsQuery.docs.map((d: QueryDocumentSnapshot) => {
+      const data = d.data();
+      return serializeFirestore<Incident>({
+        ...data,
+        id: d.id,
+      });
     });
-  });
+  } catch (err) {
+    console.warn("Static build-time fallback active for incidents:", err);
+  }
 
   return (
     <div className="p-8 max-w-7xl mx-auto space-y-8">

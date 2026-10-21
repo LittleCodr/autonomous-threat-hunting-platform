@@ -47,10 +47,10 @@ export function IncidentInvestigationClient({
   const handleAction = async (action: 'ISOLATE_HOST' | 'CLOSE' | 'DEEP_HUNT' | 'REOPEN') => {
     setActionLoading(action);
     try {
-      const res = await fetch(`/api/incidents/${incident.id}/action`, {
+      const res = await fetch(`/api/incidents/action`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action })
+        body: JSON.stringify({ id: incident.id, action })
       });
       const data = await res.json();
       if (data.success) {
@@ -85,9 +85,10 @@ export function IncidentInvestigationClient({
   const handleRunPlaybook = async () => {
     setPlaybookRunning(true);
     try {
-      const res = await fetch(`/api/incidents/${incident.id}/playbook`, {
+      const res = await fetch(`/api/incidents/playbook`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: incident.id })
       });
       const data = await res.json();
       if (data.success) {

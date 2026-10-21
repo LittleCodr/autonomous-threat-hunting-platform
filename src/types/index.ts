@@ -1,5 +1,5 @@
 export type Severity = "INFO" | "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
-export type Status = "OPEN" | "INVESTIGATING" | "CLOSED" | "RUNNING" | "COMPLETED" | "FAILED";
+export type Status = "OPEN" | "INVESTIGATING" | "CLOSED" | "RUNNING" | "COMPLETED" | "FAILED" | "CONTAINED";
 
 export interface SecurityEvent {
   id?: string;
@@ -16,13 +16,26 @@ export interface SecurityEvent {
   incidentId?: string;
 }
 
+export interface RiskBreakdown {
+  base: number;
+  densityModifier: number;
+  exfilModifier: number;
+  deviceModifier: number;
+  total: number;
+}
+
 export interface Incident {
   id?: string;
   title: string;
   status: Status;
   severity: Severity;
   risk_score: number;
+  risk_breakdown?: RiskBreakdown;
   threat_type: string;
+  mitre_tactics?: string[];
+  contained_at?: Date;
+  contained_by?: string;
+  containment_action?: string;
   created_at: Date;
   updated_at: Date;
   events?: SecurityEvent[];
@@ -48,5 +61,6 @@ export interface AIAnalysis {
   key_evidence: string[];
   likely_threat: string;
   recommended_checks: string[];
+  mitre_tactics?: string[];
   generated_at: Date;
 }

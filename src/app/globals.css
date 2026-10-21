@@ -23,18 +23,38 @@
 }
 
 body {
-  background-color: var(--color-cyber-bg);
+  background-color: #07090D;
+  background-image: 
+    linear-gradient(rgba(22, 27, 34, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(22, 27, 34, 0.35) 1px, transparent 1px);
+  background-size: 28px 28px;
   color: #e5e7eb;
   font-family: var(--font-sans), sans-serif;
 }
 
+/* Custom cyber scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #07090D;
+}
+::-webkit-scrollbar-thumb {
+  background: #161B22;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00F0FF;
+}
+
 .panel {
   border: 1px solid var(--color-cyber-border);
-  background-color: var(--color-cyber-panel);
+  background-color: #0D1117;
 }
 
 .neubrutalist-shadow {
-  box-shadow: 4px 4px 0px rgba(0, 240, 255, 0.2);
+  box-shadow: 4px 4px 0px rgba(0, 240, 255, 0.25);
 }
 
 .neubrutalist-border {
@@ -56,7 +76,7 @@ body {
 .cyber-button:hover {
   background-color: var(--color-cyber-accent);
   color: var(--color-cyber-bg);
-  box-shadow: 4px 4px 0px rgba(0, 240, 255, 0.2);
+  box-shadow: 4px 4px 0px rgba(0, 240, 255, 0.35);
 }
 
 .timeline-line {
@@ -76,6 +96,7 @@ body {
   color: #9ca3af;
   border-bottom: 1px solid var(--color-cyber-border);
   padding: 0.75rem 1rem;
+  background-color: rgba(7, 9, 13, 0.8);
 }
 
 .data-table td {
@@ -84,5 +105,5 @@ body {
 }
 
 .data-table tbody tr:hover {
-  background-color: rgba(22, 27, 34, 0.5);
+  background-color: rgba(22, 27, 34, 0.7);
 }

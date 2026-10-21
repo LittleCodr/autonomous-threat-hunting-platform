@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Autonomous Threat Hunting Platform
 
-## Getting Started
+An enterprise autonomous cyber defense and threat hunting platform engineered for sub-second adversary detection, attack chain correlation, and deterministic SOAR response.
 
-First, run the development server:
+## Key Capabilities
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Real-Time Telemetry & Firebase Synchronization**: Bidirectional real-time event ingestion and reactive snapshot streams powered by Google Cloud Firestore.
+- **5-Stage Autonomous Detective Engine**:
+  1. **Tripwire**: High-throughput event parsing for suspicious access patterns, rapid port scans, and living-off-the-land scripts.
+  2. **Entity Correlation Graph**: Temporal sliding-window graph traversal across user identities, IP sockets, and host endpoints.
+  3. **Attack Story Builder**: Chronological narrative reconstruction of multi-stage intrusions.
+  4. **Explainable Risk Scoring**: Transparent scoring algorithm factoring event density, exfiltration volume, and unrecognized devices.
+  5. **Plain-Language Dossier Synthesis**: Root-cause summaries and smoking-gun forensic evidence ready for technical teams and leadership.
+- **Global Adversary Radar & Real-World Threat Ingestion**: Ingests live indicators from US CISA Known Exploited Vulnerabilities (KEV) catalog and Abuse.ch Feodo Tracker botnet C2 feeds.
+- **MITRE ATT&CK® Enterprise Coverage**: Comprehensive mapping across Initial Access, Execution, Persistence, Defense Evasion, Discovery, Lateral Movement, and Exfiltration.
+- **Automated SOAR Containment Playbooks**: Deterministic 5-step containment response executing perimeter firewall null-routing, session token revocation, endpoint host isolation, volatile RAM dumps, and SHA-256 tamper-proof evidence seals.
+
+## Architecture
+
+```
+[ Ingest Stream / CISA KEV / Abuse.ch ]
+                 │
+                 ▼
+     [ Detection Engine (Rules) ]
+                 │ (Tripwire Trigger)
+                 ▼
+     [ Graph Correlation Engine ] ─── (±60m Window) ───▶ [ Security Events ]
+                 │
+                 ▼
+       [ Risk & Scoring Engine ]
+                 │
+                 ▼
+       [ Incidents Collection ] ◀─── [ Real-Time Firestore onSnapshot ] ───▶ [ SOC Command Center ]
+                 │
+                 ▼
+      [ Automated SOAR Playbook ] (Firewall Drop, Host Isolate, Token Revoke, Memory Dump, SHA-256)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Quick Start
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Prerequisites
+- Node.js 18+
+- npm or yarn
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. Environment Configuration
+Create a `.env.local` file in the project root:
 
-## Learn More
+```bash
+NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 
-To learn more about Next.js, take a look at the following resources:
+FIREBASE_PROJECT_ID=your_project_id
+FIREBASE_CLIENT_EMAIL=your_service_account_email
+FIREBASE_PRIVATE_KEY="your_private_key"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Installation & Run
+```bash
+# Install dependencies
+npm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Run the development server
+npm run dev
 
-## Deploy on Vercel
+# Build for production
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) to access the Command Center.

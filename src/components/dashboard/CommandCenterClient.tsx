@@ -5,6 +5,9 @@ import { RiskMeter } from '@/components/ui/RiskMeter';
 import { SeverityIndicator } from '@/components/ui/SeverityIndicator';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { CyberButton } from '@/components/ui/CyberButton';
+import { GlobalThreatRadar } from '@/components/dashboard/GlobalThreatRadar';
+import { MitreMatrix } from '@/components/dashboard/MitreMatrix';
+import { MentorPitchModal } from '@/components/dashboard/MentorPitchModal';
 import Link from 'next/link';
 import { Incident, InvestigationRun } from '@/types';
 import { collection, onSnapshot, query, orderBy, limit } from 'firebase/firestore';
@@ -31,6 +34,7 @@ export function CommandCenterClient({
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [incidentFilter, setIncidentFilter] = useState<'ALL' | 'ACTIVE' | 'CONTAINED' | 'CLOSED'>('ALL');
   const [isLiveConnected, setIsLiveConnected] = useState(true);
+  const [isPitchOpen, setIsPitchOpen] = useState(false);
 
   // Real-Time Firebase Listener: Subscribes directly to Firestore changes!
   useEffect(() => {
@@ -203,6 +207,15 @@ export function CommandCenterClient({
 
           {/* Action Buttons Toolbar */}
           <div className="flex flex-wrap items-center gap-2">
+            {/* Mentor Pitch Briefing Modal Trigger */}
+            <CyberButton
+              variant="accent"
+              onClick={() => setIsPitchOpen(true)}
+              className="text-xs flex items-center gap-1.5 font-bold bg-[#7928CA]/25 border-[#7928CA] text-white hover:bg-[#7928CA]/45"
+            >
+              🎓 MENTOR PITCH SLIDES
+            </CyberButton>
+
             {/* Real Threat Ingestion Button */}
             <button
               onClick={handleFetchLiveThreats}
@@ -334,6 +347,12 @@ export function CommandCenterClient({
           <div className="text-[10px] font-mono text-gray-500 mt-1">Zero human waiting time</div>
         </div>
       </div>
+
+      {/* Global Threat Origin Radar & Live CISA Threat Intelligence */}
+      <GlobalThreatRadar />
+
+      {/* MITRE ATT&CK Enterprise Matrix Navigator */}
+      <MitreMatrix />
 
       {/* Main Grid: Caught Break-Ins vs Detective Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -506,6 +525,9 @@ export function CommandCenterClient({
         </div>
 
       </div>
+
+      {/* Mentor Briefing Slide Deck Modal */}
+      <MentorPitchModal isOpen={isPitchOpen} onClose={() => setIsPitchOpen(false)} />
     </div>
   );
 }

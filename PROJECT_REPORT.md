@@ -1,103 +1,226 @@
+<style>
+  @media print {
+    @page {
+      size: A4;
+      margin: 25mm 20mm 25mm 25mm;
+    }
+    .page-break {
+      page-break-after: always;
+      break-after: page;
+    }
+  }
+  body, p, li, td, th {
+    font-family: "Times New Roman", Times, "Liberation Serif", serif;
+    font-size: 12pt;
+    line-height: 1.6;
+    color: #111;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: "Times New Roman", Times, "Liberation Serif", serif;
+    color: #000;
+  }
+  .report-header {
+    text-align: center;
+    font-style: italic;
+    font-size: 10pt;
+    color: #333;
+    border-bottom: 1px solid #222;
+    padding-bottom: 4px;
+    margin-bottom: 24px;
+  }
+  .report-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10pt;
+    font-style: italic;
+    color: #333;
+    border-top: 1px solid #ccc;
+    padding-top: 6px;
+    margin-top: 40px;
+  }
+  .page-number-right {
+    text-align: right;
+    font-size: 11pt;
+    margin-top: 35px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+  }
+  th, td {
+    border: 1px solid #333;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background-color: #f3f3f3;
+    font-weight: bold;
+  }
+</style>
+
+<div align="center">
+
 # AUTONOMOUS THREAT HUNTING PLATFORM
-## A Real-Time Self-Driving Cyber Intrusion Correlation and SOAR Incident Response System
+### A Real-Time Self-Driving Cyber Intrusion Correlation and SOAR Incident Response System
 
----
+<br/>
 
-**B.Tech Major Project Progress Report (Phase 1 / Mid-Term Evaluation)**  
+**A PROJECT PROGRESS REPORT**  
+*(Phase 1 / Mid-Term Evaluation)*  
 *Submitted in partial fulfillment of the requirements for the award of the degree of*  
-**Bachelor of Technology in Computer Science and Engineering (Cyber Security)**
 
----
+<br/>
 
-### Submitted By:
-**Mayank Agrawal**  
-University Roll No.: `[Roll Number / Registration ID: 21BCSE000]`  
-Department of Computer Science and Engineering  
-Group ID / Project Ref: `[GRP-CYBER-2026-04]`
+## **Bachelor of Technology**
+### in
+## **Computer Science and Engineering**
 
-### Under the Guidance of:
-**[Project Supervisor Name]**  
-*Designation: Professor / Assistant Professor*  
-Department of Computer Science and Engineering  
-`[Institution / University Name Placeholder]`  
-`[Campus City, State, PIN Code]`
+<br/>
 
-**Academic Year:** 2025 – 2026  
-**Submission Date:** October 2026
+### **Submitted By:**
+**Anushka Bansal**  
+**University Roll No.: 2415500090**  
+**Group No.: 73**  
+*Department of Computer Engineering and Applications*
 
----
+<br/>
 
-<div style="page-break-after: always;"></div>
+### **Under the Guidance of:**
+**Mrs. Rashika Bagri**  
+*Assistant Professor*  
+Department of Computer Engineering and Applications
 
-## DECLARATION
+<br/>
+<br/>
 
-I hereby declare that this project report entitled **"Autonomous Threat Hunting Platform: A Real-Time Self-Driving Cyber Intrusion Correlation and SOAR Incident Response System"**, submitted to the Department of Computer Science and Engineering, `[Institution / University Name Placeholder]`, is a bona fide record of original development and research work carried out by me under the supervision of **[Project Supervisor Name]**.
+### **DEPARTMENT OF COMPUTER ENGINEERING AND APPLICATIONS**
+## **GLA UNIVERSITY, MATHURA**
+**Academic Session: 2025 – 2026**  
+**Submission Date: October, 2026**
 
-I further confirm that:
-1. This report represents genuine, verified software implementation, testing, and system architecture completed as part of the B.Tech curriculum.
-2. The code, data models, correlation algorithms, and user interfaces documented herein have been built and verified in the project repository.
-3. The content of this report has not been submitted previously, in part or in full, to any other university or institute for the award of any degree, diploma, or academic credit.
-4. All references to external standards, datasets (such as US CISA KEV and Abuse.ch Feodo Tracker), software libraries, and academic publications have been properly cited and attributed in accordance with IEEE academic citation standards.
-
-\
-**Mayank Agrawal**  
-Roll No.: `[Roll Number / Registration ID]`  
-Department of Computer Science and Engineering  
-`[Institution / University Name Placeholder]`  
-Date: 21st October 2026  
-Place: `[City Placeholder]`
-
----
+</div>
 
 <div style="page-break-after: always;"></div>
 
-## CERTIFICATE
+<br/>
 
-This is to certify that the project progress report entitled **"Autonomous Threat Hunting Platform: A Real-Time Self-Driving Cyber Intrusion Correlation and SOAR Incident Response System"**, submitted by **Mayank Agrawal** (Roll No.: `[Roll Number Placeholder]`), is an authentic record of the candidate's work completed under my direct supervision and guidance in partial fulfillment of the requirements for the award of the degree of **Bachelor of Technology in Computer Science and Engineering** during the academic session 2025–2026.
+<h1 align="center"><u>DECLARATION</u></h1>
 
-To the best of my knowledge, the matter embodied in this report has reached a defensible level of engineering completion, and the technical implementations documented herein have been inspected and validated.
+<br/>
 
-\
-\
-\
-__________________________________  
-**[Project Supervisor Name]**  
-*Project Supervisor*  
-Department of Computer Science & Engineering  
-`[Institution / University Name Placeholder]`
+I hereby declare that the work which is being presented in the B.Tech. Project **“Autonomous Threat Hunting Platform: A Real-Time Self-Driving Cyber Intrusion Correlation and SOAR Incident Response System”**, in partial fulfillment of the requirements for the award of the ***Bachelor of Technology*** in Computer Science and Engineering and submitted to the Department of Computer Engineering and Applications of GLA University, Mathura, is an authentic record of my own work carried under the supervision of **Mrs. Rashika Bagri**, Assistant Professor.
 
-\
-\
-\
-__________________________________  
-**[Head of Department / Coordinator Name]**  
-*Head of Department*  
-Department of Computer Science & Engineering  
-`[Institution / University Name Placeholder]`
+The contents of this project report, in full or in parts, have not been submitted to any other Institute or University for the award of any degree.
 
----
+<br/>
+<br/>
+<br/>
 
-<div style="page-break-after: always;"></div>
+<table style="width: 100%; border: none; background: transparent; margin-top: 30px;">
+  <tr style="border: none;">
+    <td style="border: none; width: 60%; vertical-align: top;">
+      <b>Sign:</b> ___________________________<br/><br/>
+      <b>Name of Candidate:</b> Anushka Bansal<br/>
+      <b>Univ Roll No.:</b> 2415500090<br/>
+      <b>Course:</b> B.Tech CS<br/>
+      <b>Group No.:</b> 73
+    </td>
+    <td style="border: none; width: 40%; vertical-align: bottom; text-align: right;">
+    </td>
+  </tr>
+</table>
 
-## ACKNOWLEDGEMENT
-
-I express my deepest gratitude to my project supervisor, **[Project Supervisor Name]**, for their invaluable guidance, technical insights, and consistent encouragement throughout the conceptualization, system architecture design, and implementation phases of this project. Their constructive criticism and high standards for software quality and cyber forensics have significantly shaped the rigour of this engineering work.
-
-I would also like to extend my heartfelt thanks to **[Head of Department Name]**, Head of the Department of Computer Science and Engineering, and the faculty members of the Cyber Security division for providing the necessary computational lab infrastructure, cloud environment support, and administrative facilitation required to conduct real-time threat hunting research.
-
-Special appreciation is extended to the global cybersecurity open-intelligence community, particularly the teams maintaining the **US Cybersecurity and Infrastructure Security Agency (CISA) Known Exploited Vulnerabilities (KEV)** catalog and **Abuse.ch (Feodo Tracker)**, whose open APIs and feeds provided the authentic adversary telemetry that powers this platform's verification engine.
-
-Finally, I express my sincere appreciation to my peers, project reviewers, and family for their patience, moral support, and feedback throughout long hours of coding, debugging, and testing.
-
-\
-**Mayank Agrawal**  
-October 2026
-
----
+<div class="page-number-right">2</div>
 
 <div style="page-break-after: always;"></div>
 
-## ABSTRACT
+<br/>
+
+<h1 align="center"><u>CERTIFICATE</u></h1>
+
+<br/>
+
+This is to certify that the above statements made by the candidate are correct to the best of my/our knowledge and belief.
+
+<br/>
+<br/>
+<br/>
+
+___________________________  
+**Supervisor**  
+**(Mrs. Rashika Bagri)**  
+Assistant Professor  
+Dept. of Computer Engg. & App.  
+
+<br/>
+<br/>
+<br/>
+
+<table style="width: 100%; border: none; background: transparent; margin-top: 20px;">
+  <tr style="border: none;">
+    <td style="border: none; width: 50%; vertical-align: top;">
+      ___________________________<br/>
+      <b>Project Co-ordinator</b><br/>
+      <b>(Dr. Mayank Srivastava)</b><br/>
+      Associate Professor<br/>
+      Dept. of Computer Engg. & App.
+    </td>
+    <td style="border: none; width: 50%; vertical-align: top;">
+      ___________________________<br/>
+      <b>Program Co-ordinator</b><br/>
+      <b>(Dr. Nikhil Govil)</b><br/>
+      Associate Professor<br/>
+      Dept. of Computer Engg. & App.
+    </td>
+  </tr>
+</table>
+
+<br/>
+<br/>
+
+**Date:** 21 October, 2026
+
+<div class="page-number-right">3</div>
+
+<div style="page-break-after: always;"></div>
+
+<br/>
+
+<h1 align="center"><u>ACKNOWLEDGEMENT</u></h1>
+
+<br/>
+
+We would like to express our sincere gratitude to everyone who supported and guided us throughout the successful completion of this project. First and foremost, we extend our heartfelt thanks to our respected guide, **Mrs. Rashika Bagri (Assistant Professor)**, for her continuous encouragement, valuable feedback, and insightful suggestions at every stage of the project titled **“Autonomous Threat Hunting Platform: A Real-Time Self-Driving Cyber Intrusion Correlation and SOAR Incident Response System”**. Her expertise and guidance have been fundamental in shaping the direction and outcome of this work.
+
+We are deeply thankful to the Department of **Computer Engineering and Applications** and our institution, **GLA University, Mathura**, for providing a supportive learning environment, access to essential resources, and the necessary facilities that enabled the smooth execution of this project. Working on this system has significantly enhanced our technical knowledge, teamwork, and problem-solving skills.
+
+We would also like to thank the **Head of the Department, Mr. Ashok Bhansali**, for his constant support and motivation. We are grateful to all faculty members of the department for their guidance, as well as to our classmates and friends for their cooperation, suggestions, and encouragement throughout the development process. Lastly, we owe our deepest appreciation to our families, who have been a continuous source of strength, patience, and motivation, helping us stay focused and determined. This project has been a meaningful learning experience, and we sincerely thank everyone who contributed to its successful completion, directly or indirectly.
+
+<br/>
+<br/>
+
+<table style="width: 100%; border: none; background: transparent;">
+  <tr style="border: none;">
+    <td style="border: none; width: 60%;">
+      <b>Anushka Bansal</b><br/>
+      2415500090<br/>
+      Group No: 73
+    </td>
+    <td style="border: none; width: 40%;"></td>
+  </tr>
+</table>
+
+<div class="page-number-right">4</div>
+
+<div style="page-break-after: always;"></div>
+
+<br/>
+
+<h1 align="center"><u>ABSTRACT</u></h1>
+
+<br/>
 
 Modern enterprise Security Operations Centers (SOCs) face an existential crisis characterized by high adversary dwell times, crippling alert fatigue, and acute analyst burnout. According to the IBM Cost of a Data Breach Report, the average Mean Time to Identify (MTTI) a sophisticated cyber breach is **207 days**, primarily due to the disconnection between raw system telemetry and high-level attack campaigns. Traditional Security Information and Event Management (SIEM) platforms act as passive log warehouses that bombard human operators with upwards of 10,000 disconnected, cryptic alerts daily, with over 68% of critical breach indicators being overlooked as background noise. Furthermore, existing Security Orchestration, Automation, and Response (SOAR) playbooks often suffer from sluggish integration latencies and demand specialized scripting knowledge, while incident summaries are inundated with cryptic hex codes that paralyze executive decision-making during high-severity emergencies.
 
@@ -112,9 +235,11 @@ The core engine implements a **5-stage deterministic autonomous investigation pi
 
 To eliminate human containment delays, the platform integrates an **Automated 5-Stage SOAR Playbook** capable of executing border firewall null-routing, session token revocation, endpoint host network isolation, volatile RAM dump acquisition, and cryptographic **SHA-256 tamper-evident evidence sealing** in under $130$ milliseconds. Testing and benchmarking verify an empirical Mean Time to Detect (MTTD) of **$120\text{ ms}$** and a **$96\%$ reduction in alert noise**. The system has been validated via full automated compilation, end-to-end integration tests, and deployed live to production on GitHub Pages and cloud infrastructure.
 
+<br/>
+
 **Keywords:** Autonomous Threat Hunting, Security Orchestration Automation and Response (SOAR), Entity Graph Correlation, Explainable Risk Scoring, CISA KEV, MITRE ATT&CK, Firebase Firestore.
 
----
+<div class="page-number-right">5</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -264,11 +389,18 @@ To eliminate human containment delays, the platform integrates an **Automated 5-
 
 ---
 
-<div style="page-break-after: always;"></div>
+<div class="report-header">
+<i>Autonomous Threat Hunting Platform</i>
+</div>
 
-# CHAPTER 1: INTRODUCTION
+<h1 align="center" style="font-size: 20pt; letter-spacing: 1px; margin-bottom: 24px;">
+CHAPTER 1<br/>
+<span style="font-size: 22pt;">INTRODUCTION</span>
+</h1>
 
-## 1.1 Overview and Motivation
+<br/>
+
+### 1.1 Overview and Motivation
 In an era characterized by exponential growth in distributed cloud infrastructure, microservices, and hybrid remote workforces, enterprise attack surfaces have expanded beyond the protective perimeter of traditional network firewalls. Cyber adversaries, ranging from ransomware syndicates to advanced persistent threat (APT) groups, execute multi-stage campaigns characterized by subtle reconnaissance, living-off-the-land (LotL) binary invocation, credential stuffing, lateral hop traversal, and low-and-slow data exfiltration.
 
 Enterprise organizations routinely ingest millions of security log events daily from host-based Endpoint Detection and Response (EDR) sensors, network switches, authentication identity providers (Active Directory/Okta), and perimeter firewalls. However, the volume, velocity, and variety of these logs overwhelm human analysts within Security Operations Centers (SOCs). Tier-1 triage analysts spend between 60% and 80% of their operational shift manually correlating disparate log records: cross-referencing an IP address seen on an edge proxy with an Active Directory username and checking host process telemetry on an internal workstation. 
@@ -365,11 +497,18 @@ flowchart LR
 
 ---
 
-<div style="page-break-after: always;"></div>
+<div class="report-header">
+<i>Autonomous Threat Hunting Platform</i>
+</div>
 
-# CHAPTER 2: SOFTWARE REQUIREMENT ANALYSIS
+<h1 align="center" style="font-size: 20pt; letter-spacing: 1px; margin-bottom: 24px;">
+CHAPTER 2<br/>
+<span style="font-size: 22pt;">SOFTWARE REQUIREMENT ANALYSIS</span>
+</h1>
 
-## 2.1 Introduction to Requirement Analysis
+<br/>
+
+### 2.1 Introduction to Requirement Analysis
 Software requirement analysis serves as the rigorous engineering foundation for the Autonomous Threat Hunting Platform. It defines the formal functional and non-functional boundaries necessary to process high-throughput security event telemetry while guaranteeing sub-second response times, zero data loss, and verifiable containment.
 
 ## 2.2 Stakeholders and User Roles
@@ -516,11 +655,18 @@ The project was structured across three engineering phases: Phase 1 (Core archit
 
 ---
 
-<div style="page-break-after: always;"></div>
+<div class="report-header">
+<i>Autonomous Threat Hunting Platform</i>
+</div>
 
-# CHAPTER 3: SOFTWARE DESIGN
+<h1 align="center" style="font-size: 20pt; letter-spacing: 1px; margin-bottom: 24px;">
+CHAPTER 3<br/>
+<span style="font-size: 22pt;">SOFTWARE DESIGN</span>
+</h1>
 
-## 3.1 System Architecture Overview
+<br/>
+
+### 3.1 System Architecture Overview
 The Autonomous Threat Hunting Platform is architected as an asynchronous, event-driven reactive system. The presentation layer is decoupled from core correlation logic, communicating via bidirectional WebSocket channels established by the Firebase Firestore Client SDK.
 
 ```mermaid
@@ -839,11 +985,18 @@ The user interface avoids sterile corporate dashboard templates in favor of a **
 
 ---
 
-<div style="page-break-after: always;"></div>
+<div class="report-header">
+<i>Autonomous Threat Hunting Platform</i>
+</div>
 
-# CHAPTER 4: IMPLEMENTATION AND USER INTERFACE
+<h1 align="center" style="font-size: 20pt; letter-spacing: 1px; margin-bottom: 24px;">
+CHAPTER 4<br/>
+<span style="font-size: 22pt;">IMPLEMENTATION AND USER INTERFACE</span>
+</h1>
 
-## 4.1 Technology Stack Used
+<br/>
+
+### 4.1 Technology Stack Used
 
 | Layer | Technology | Verified Version | Purpose in Platform |
 | :--- | :--- | :--- | :--- |
@@ -1046,11 +1199,18 @@ The project utilizes GitHub Actions (`.github/workflows/nextjs.yml`) configured 
 
 ---
 
-<div style="page-break-after: always;"></div>
+<div class="report-header">
+<i>Autonomous Threat Hunting Platform</i>
+</div>
 
-# CHAPTER 5: SOFTWARE TESTING
+<h1 align="center" style="font-size: 20pt; letter-spacing: 1px; margin-bottom: 24px;">
+CHAPTER 5<br/>
+<span style="font-size: 22pt;">SOFTWARE TESTING</span>
+</h1>
 
-## 5.1 Testing Strategy & Scope
+<br/>
+
+### 5.1 Testing Strategy & Scope
 The platform underwent multi-tiered verification covering unit logic, cross-module integration, black-box user interactions, and end-to-end cloud deployment. Automated linting was enforced via ESLint 9, and compilation was validated via Next.js Turbopack.
 
 ## 5.2 Unit Testing
@@ -1126,11 +1286,18 @@ All core modules (Tripwire, Graph Walker, Story Builder, Danger Meter, Plain-Eng
 
 ---
 
-<div style="page-break-after: always;"></div>
+<div class="report-header">
+<i>Autonomous Threat Hunting Platform</i>
+</div>
 
-# CHAPTER 6: CONCLUSION AND FUTURE WORK
+<h1 align="center" style="font-size: 20pt; letter-spacing: 1px; margin-bottom: 24px;">
+CHAPTER 6<br/>
+<span style="font-size: 22pt;">CONCLUSION AND FUTURE WORK</span>
+</h1>
 
-## 6.1 Current Project Status
+<br/>
+
+### 6.1 Current Project Status
 The **Autonomous Threat Hunting Platform** is fully functional, verified, and deployed. The platform successfully bridges the gap between passive log aggregation and real-time autonomous threat defense.
 
 ## 6.2 Objectives Achieved
@@ -1164,11 +1331,18 @@ This project successfully demonstrates that the fundamental limitations of moder
 
 ---
 
-<div style="page-break-after: always;"></div>
+<div class="report-header">
+<i>Autonomous Threat Hunting Platform</i>
+</div>
 
-# CHAPTER 7: SUMMARY
+<h1 align="center" style="font-size: 20pt; letter-spacing: 1px; margin-bottom: 24px;">
+CHAPTER 7<br/>
+<span style="font-size: 22pt;">SUMMARY</span>
+</h1>
 
-## 7.1 Summary
+<br/>
+
+### 7.1 Summary
 The **Autonomous Threat Hunting Platform** represents an end-to-end, full-stack cybersecurity engineering project designed and developed to modernize enterprise Security Operations Centers. 
 
 Through this project:

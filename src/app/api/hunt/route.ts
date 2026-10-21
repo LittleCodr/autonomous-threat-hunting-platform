@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminDb } from "@/lib/firebase/admin";
 import { SecurityEvent } from "@/types";
-import { QueryDocumentSnapshot, Timestamp } from "firebase-admin/firestore";
+import { Query, QueryDocumentSnapshot, Timestamp } from "firebase-admin/firestore";
 import { buildIncident } from "@/lib/correlation";
 import { evaluateRisk } from "@/lib/risk";
 import { generateAIAnalysis } from "@/lib/ai";
@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     const type = (entityType || "USER").toUpperCase();
     const eventsRef = adminDb.collection("security_events");
 
-    let query: FirebaseFirestore.Query;
+    let query: Query;
     if (type === "IP" || type === "IP ADDRESS") {
       query = eventsRef.where("source_ip", "==", value);
     } else if (type === "DEVICE") {
@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
     }
 
     const snapshot = await query.limit(100).get();
-    const events = snapshot.docs.map((doc: QueryDocumentSnapshot) => {
+    const events: SecurityEvent[] = snapshot.docs.map((doc: QueryDocumentSnapshot) => {
       const data = doc.data();
       return {
         ...data,
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
     if (type === "IP" || type === "IP ADDRESS") {
       const destSnapshot = await eventsRef.where("destination_ip", "==", value).limit(50).get();
       destSnapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
-        if (!events.some(e => e.id === doc.id)) {
+        if (!events.some((e: SecurityEvent) => e.id === doc.id)) {
           const data = doc.data();
           events.push({
             ...data,
@@ -57,13 +57,13 @@ export async function POST(req: NextRequest) {
     }
 
     // Sort chronologically
-    events.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
+    events.sort((a: SecurityEvent, b: SecurityEvent) => b.timestamp.getTime() - a.timestamp.getTime());
 
     // Extract correlated entities
-    const connectedUsers = Array.from(new Set(events.map(e => e.user).filter(Boolean)));
-    const connectedIps = Array.from(new Set(events.map(e => e.source_ip).filter(Boolean)));
-    const connectedDevices = Array.from(new Set(events.map(e => e.device).filter(Boolean)));
-    const connectedProcesses = Array.from(new Set(events.map(e => e.process).filter(Boolean)));
+    const connectedUsers = Array.from(new Set(events.map((e: SecurityEvent) => e.user).filter(Boolean)));
+    const connectedIps = Array.from(new Set(events.map((e: SecurityEvent) => e.source_ip).filter(Boolean)));
+    const connectedDevices = Array.from(new Set(events.map((e: SecurityEvent) => e.device).filter(Boolean)));
+    const connectedProcesses = Array.from(new Set(events.map((e: SecurityEvent) => e.process).filter(Boolean)));
 
     let createdIncidentId: string | undefined = undefined;
 
@@ -95,7 +95,7 @@ export async function POST(req: NextRequest) {
 
       // Update events
       const batch = adminDb.batch();
-      events.forEach(e => {
+      events.forEach((e: SecurityEvent) => {
         if (e.id) batch.update(eventsRef.doc(e.id), { incidentId: incRef.id });
       });
       await batch.commit();

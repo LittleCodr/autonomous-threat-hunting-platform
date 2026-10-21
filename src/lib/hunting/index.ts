@@ -1,6 +1,6 @@
 import { SecurityEvent } from "@/types";
 import { adminDb } from "../firebase/admin";
-import { QueryDocumentSnapshot } from "firebase-admin/firestore";
+import { QueryDocumentSnapshot, QuerySnapshot } from "firebase-admin/firestore";
 
 /**
  * Autonomous Hunt Engine
@@ -13,7 +13,7 @@ export async function huntRelatedEvents(triggerEvent: SecurityEvent): Promise<Se
 
   const relatedEventsMap = new Map<string, SecurityEvent>();
   
-  const addResults = (snapshot: FirebaseFirestore.QuerySnapshot) => {
+  const addResults = (snapshot: QuerySnapshot) => {
     snapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
       const data = doc.data();
       const eventTime = data.timestamp.toDate().getTime();

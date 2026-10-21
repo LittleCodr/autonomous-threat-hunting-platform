@@ -143,7 +143,7 @@ export default async function RulesAndRuns() {
                     </td>
                   </tr>
                 ) : (
-                  runs.map(r => (
+                  runs.map((r: InvestigationRun) => (
                     <tr key={r.id} className="hover:bg-[#161B22] transition-colors">
                       <td className="font-bold text-gray-200">{r.id}</td>
                       <td className="text-gray-400 whitespace-nowrap">

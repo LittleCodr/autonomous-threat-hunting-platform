@@ -32,7 +32,7 @@ export default async function IncidentInvestigationPage({ params }: { params: Pr
     });
   });
 
-  const timelineEvents = rawTimelineEvents.sort((a, b) => 
+  const timelineEvents = rawTimelineEvents.sort((a: SecurityEvent, b: SecurityEvent) => 
     new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
   );
 

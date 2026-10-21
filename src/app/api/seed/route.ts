@@ -6,7 +6,7 @@ import { buildIncident } from "@/lib/correlation";
 import { evaluateRisk } from "@/lib/risk";
 import { generateAIAnalysis } from "@/lib/ai";
 import { SecurityEvent } from "@/types";
-import { Timestamp } from "firebase-admin/firestore";
+import { Timestamp, QueryDocumentSnapshot } from "firebase-admin/firestore";
 
 async function processEventsInternal(eventsToProcess: any[]) {
   const results = [];
@@ -35,11 +35,11 @@ async function processEventsInternal(eventsToProcess: any[]) {
       .get();
     
     const recentEventsMap = new Map<string, SecurityEvent>();
-    recentQuery.docs.forEach((doc) => {
+    recentQuery.docs.forEach((doc: QueryDocumentSnapshot) => {
       const data = doc.data();
       recentEventsMap.set(doc.id, { ...data, id: doc.id, timestamp: data.timestamp.toDate() } as SecurityEvent);
     });
-    batchIngested.forEach(be => {
+    batchIngested.forEach((be: SecurityEvent) => {
       if (be.id) recentEventsMap.set(be.id, be);
     });
     const recentEvents = Array.from(recentEventsMap.values());
@@ -192,7 +192,7 @@ export async function DELETE() {
     for (const col of collections) {
       const snap = await adminDb.collection(col).limit(200).get();
       const batch = adminDb.batch();
-      snap.docs.forEach(doc => {
+      snap.docs.forEach((doc: QueryDocumentSnapshot) => {
         batch.delete(doc.ref);
         deletedCount++;
       });

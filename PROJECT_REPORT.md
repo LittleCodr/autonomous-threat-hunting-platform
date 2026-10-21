@@ -60,52 +60,6 @@
   }
 </style>
 
-<div align="center">
-
-# AUTONOMOUS THREAT HUNTING PLATFORM
-### A Real-Time Self-Driving Cyber Intrusion Correlation and SOAR Incident Response System
-
-<br/>
-
-**A PROJECT PROGRESS REPORT**  
-*(Phase 1 / Mid-Term Evaluation)*  
-*Submitted in partial fulfillment of the requirements for the award of the degree of*  
-
-<br/>
-
-## **Bachelor of Technology**
-### in
-## **Computer Science and Engineering**
-
-<br/>
-
-### **Submitted By:**
-**Anushka Bansal**  
-**University Roll No.: 2415500090**  
-**Group No.: 73**  
-*Department of Computer Engineering and Applications*
-
-<br/>
-
-### **Under the Guidance of:**
-**Mrs. Rashika Bagri**  
-*Assistant Professor*  
-Department of Computer Engineering and Applications
-
-<br/>
-<br/>
-
-### **DEPARTMENT OF COMPUTER ENGINEERING AND APPLICATIONS**
-## **GLA UNIVERSITY, MATHURA**
-**Academic Session: 2025 – 2026**  
-**Submission Date: October, 2026**
-
-</div>
-
-<div style="page-break-after: always;"></div>
-
-<br/>
-
 <h1 align="center"><u>DECLARATION</u></h1>
 
 <br/>
@@ -216,11 +170,9 @@ We would also like to thank the **Head of the Department, Mr. Ashok Bhansali**, 
 
 <div style="page-break-after: always;"></div>
 
-<br/>
+<h1 align="center" style="margin-top: 5px; margin-bottom: 12px;"><u>ABSTRACT</u></h1>
 
-<h1 align="center"><u>ABSTRACT</u></h1>
-
-<br/>
+<div class="abstract-container">
 
 Modern enterprise Security Operations Centers (SOCs) face an existential crisis characterized by high adversary dwell times, crippling alert fatigue, and acute analyst burnout. According to the IBM Cost of a Data Breach Report, the average Mean Time to Identify (MTTI) a sophisticated cyber breach is **207 days**, primarily due to the disconnection between raw system telemetry and high-level attack campaigns. Traditional Security Information and Event Management (SIEM) platforms act as passive log warehouses that bombard human operators with upwards of 10,000 disconnected, cryptic alerts daily, with over 68% of critical breach indicators being overlooked as background noise. Furthermore, existing Security Orchestration, Automation, and Response (SOAR) playbooks often suffer from sluggish integration latencies and demand specialized scripting knowledge, while incident summaries are inundated with cryptic hex codes that paralyze executive decision-making during high-severity emergencies.
 
@@ -235,9 +187,9 @@ The core engine implements a **5-stage deterministic autonomous investigation pi
 
 To eliminate human containment delays, the platform integrates an **Automated 5-Stage SOAR Playbook** capable of executing border firewall null-routing, session token revocation, endpoint host network isolation, volatile RAM dump acquisition, and cryptographic **SHA-256 tamper-evident evidence sealing** in under $130$ milliseconds. Testing and benchmarking verify an empirical Mean Time to Detect (MTTD) of **$120\text{ ms}$** and a **$96\%$ reduction in alert noise**. The system has been validated via full automated compilation, end-to-end integration tests, and deployed live to production on GitHub Pages and cloud infrastructure.
 
-<br/>
-
 **Keywords:** Autonomous Threat Hunting, Security Orchestration Automation and Response (SOAR), Entity Graph Correlation, Explainable Risk Scoring, CISA KEV, MITRE ATT&CK, Firebase Firestore.
+
+</div>
 
 <div class="page-number-right">5</div>
 
@@ -246,7 +198,6 @@ To eliminate human containment delays, the platform integrates an **Automated 5-
 ## TABLE OF CONTENTS
 
 - **Front Matter**
-  - Cover Page
   - Declaration
   - Certificate
   - Acknowledgement
@@ -368,8 +319,6 @@ To eliminate human containment delays, the platform integrates an **Automated 5-
 
 ---
 
-<div style="page-break-after: always;"></div>
-
 ## LIST OF FIGURES
 
 - **Figure 1.1:** Conceptual Architecture: Self-Driving Cyber Detective Pipeline
@@ -387,7 +336,7 @@ To eliminate human containment delays, the platform integrates an **Automated 5-
 - **Figure 4.3:** Automated 5-Step SOAR Containment Panel (Sub-second Latency)
 - **Figure 4.4:** Plain-English Incident Dossier & Smoking Gun Evidence Screen
 
----
+<div style="page-break-after: always;"></div>
 
 <div class="report-header">
 <i>Autonomous Threat Hunting Platform</i>
